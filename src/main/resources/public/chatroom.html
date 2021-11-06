@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+            rel="stylesheet"
+            id="bootstrap-css"
+    />
+    <script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-1.11.3.min.js"
+    ></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+    <script src="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.js">
+    </script>
+    <link rel="stylesheet" href="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.css" />
+
+    <link rel="stylesheet" href="./css/chatroom.css" />
+    <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+
+
+    <title>Chat Room</title>
+</head>
+
+<body>
+
+
+<div class="header">
+    <a class="logo">Team G</a>
+    <div class="header-right" style="cursor: pointer">
+        <!-- create a room -->
+        <a id="plus-btn" data-toggle="modal" data-target="#modal_create">
+            <img src="./images/plus-icon.png" alt="plus icon"/>
+        </a>
+
+        <!-- notification -->
+        <a id="notification-btn" data-toggle="modal" data-target="#modal_noti">
+            <img src="./images/notification-icon.png" alt="notification icon"/>
+        </a>
+        <!-- modal profile -->
+        <a id="profile-btn" data-toggle="modal" data-target="#modal_profile">
+            <img src=./images/profile-icon.png alt="profile icon"
+            />
+        </a>
+        <!-- logout -->
+        <a id="logout-btn" href="">
+            <img src="./images/logout-icon.png" alt="log out icon"/>
+        </a>
+    </div>
+</div>
+
+<!-- Main page -->
+
+<div class="content container-fluid">
+    <div class="row row-broken">
+        <!-- left -->
+        <div  style="margin-left: 50px" class="col-sm-2 col-xs-12 pl-0">
+            <div class="col-inside-lg chat" style="overflow: hidden; outline: none" tabindex="5000">
+
+                <div class="row">
+                    <div class="room-col">
+                        <button id="all-rooms" class="btn btn-block room-btn">All Rooms</button>
+                        <button id="joined-rooms" class="btn btn-block room-btn">Joined Rooms</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="room-col search-box">
+                        <input type="text" id="searchInput" onkeyup="searchChannel()" placeholder="Search" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="room-col">
+                        <button id="leave-all-rooms" class="btn btn-block leave-btn">Leave All Rooms</button>
+                    </div>
+                    <div class="room-col">
+                        <button id="leave-room" class="btn btn-block leave-btn">Leave a Room</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="chat-room-list" class="chat-users">
+                        <!-- append chat room list here -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+                class="col-sm-7 col-xs-12 chat"
+                style="overflow: hidden; outline: none; padding-right: 0"
+                tabindex="5001"
+        >
+            <div class="col-inside-lg">
+                <div id="chat-body-id" class="chat-body" style="display: none">
+                    <div id="chat-header-id" class="chat-header" style="display: flex; align-items: center">
+<!--                        insert chat header here-->
+<!--                        <h6>COMP 504 Team G</h6>-->
+<!--                        <p>5 members</p>-->
+                    </div>
+                    <div id="message-area-id" class="message-area" style="min-height: 400px;">
+<!--                        insert message here-->
+                    </div>
+
+
+<!--                    <div class="history-message">-->
+<!--                        <div class="text">yc144 was invited to the group</div>-->
+<!--                    </div>-->
+
+
+<!--                    <div class="answer left">-->
+<!--                        <div class="avatar">-->
+<!--                            <img-->
+<!--                                    src="https://bootdey.com/img/Content/avatar/avatar1.png"-->
+<!--                                    alt="User name"-->
+<!--                            />-->
+<!--                            <div class="status offline"></div>-->
+<!--                        </div>-->
+<!--                        <div class="name">Jiacheng Sun</div>-->
+<!--                        <div class="text">-->
+<!--                            Whats up, what is going on here?-->
+<!--                        </div>-->
+<!--                        <div class="time">5 min ago</div>-->
+<!--                    </div>-->
+<!--                    <div class="answer right">-->
+<!--                        <div class="avatar">-->
+<!--                            <img-->
+<!--                                    src="https://bootdey.com/img/Content/avatar/avatar2.png"-->
+<!--                                    alt="User name"-->
+<!--                            />-->
+<!--                            <div class="status offline"></div>-->
+<!--                        </div>-->
+<!--                        <div class="name ">Steven Li</div>-->
+<!--                        <div class="text">-->
+<!--                            Hi, buddys, a warm welcome to my channel.let's decide on the division of labor in hw5 this time and timeline!-->
+<!--                        </div>-->
+<!--                        <div class="time">5 min ago</div>-->
+<!--                    </div>-->
+                    <div class="answer-add">
+                        <select id="receiver-users">
+                            <option value="all">
+                                All
+                            </option>
+
+                        </select>
+                        <input id="input-message" placeholder="Write a message" />
+                        <button id="btn-message" class="answer-btn answer-btn-1 btn btn-light">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-right: 0" class="col-sm-2 col-xs-12">
+            <div
+                    class="col-inside-lg chat"
+                    style="overflow: hidden; outline: none; padding-right: 0px"
+                    tabindex="5000"
+            >
+                <div class="chat-users">
+                    <div >
+                        <div style="margin-bottom: 0.5rem">
+                            <button id="online-user" class="btn btn-block room-btn">Room Users</button>
+                        </div>
+                        <div id="invite-user-id"></div>
+                    </div>
+                    <div id="channel-user-list">
+                        <!-- add channel user list here -->
+                    </div>
+                    <div id="all-user-list">
+                        <!-- add all user list here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- Modal_create -->
+    <div class="modal" id="create-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header p-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">Create your room!</h5>
+<!--                    <button type="button" class="close  close-btn" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <form id="create-room-from" class="needs-validation"  novalidate="">
+                        <div class="row g-3">
+                            <div class = "col-sm-12 mb-2">
+                                <label for="RoomManager" class="form-label mb-0 pb-0">Room Manager</label>
+                                <input type="text" class="form-control" id="RoomManager" placeholder="Mack Joyner (you)" value="" disabled>
+                            </div>
+
+                            <!-- name -->
+                            <div class="col-sm-12 mb-2">
+                                <label for="RoomName" class="form-label mb-0 pb-0">Room name</label>
+                                <input type="text" class="form-control" id="RoomName" placeholder="Set a name!" value="" required="">
+                                <div id="room-name-invalid-feedback" class="invalid-feedback" style="display: none">
+                                    Valid room name is required.
+                                </div>
+                            </div>
+                            <!-- capacity -->
+                            <div class="col-sm-12 mb-2">
+                                <label for="RoomCapacity" class="form-label mb-0 pb-0">Room capacity</label>
+                                <input type="number" class="form-control" id="RoomCapacity" placeholder="limit number on members" value="" required="">
+                                <div id="room-capacity-invalid-feedback" class="invalid-feedback" style="display: none">
+                                    Valid capacity is required.
+                                </div>
+                            </div>
+                            <!-- private -->
+                            <div class = "col-sm-12 mb-2">
+                                <label class="form-label mb-0 pb-0">Private</label>
+                                <input type="checkbox" id="ifPrivate" >
+                            </div>
+                        </div>
+                        <!-- footer -->
+                        <div class="modal-footer p-0 pt-2">
+                            <button id="quit-create-chatroom" type="button" class="btn btn-secondary" data-dismiss="modal">Quit</button>
+                            <button id="submit-create-chatroom" type="submit" method="post" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- Modal_notification-->
+<div class="modal" id="notif-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header py-2">
+                <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+<!--                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+            </div>
+
+            <div class="modal-body">
+                <div class="notification-item col-12">
+                    <div class="row col-12 m-0">
+                        <p class="col-12">You are invited to join Chat Room 1. Please follow the <a href="#" id="popover" class="text" rel="popover" data-message="1.No dirty words &#13;&#10;2. No personal information dsclosure">room code</a>
+                        </p>
+                        <button class="btn col-5 bg-light border border-black">Join</button>
+                        <p class="col-2"></p>
+                        <button class="btn col-5 bg-light border border-black">Ignore</button>
+                    </div>
+                </div>
+                <div class="notification-item col-12">
+                    <div class="row col-12 m-0">
+                        <p class="col-12">Tim requested to join Chat Room 2</p>
+                        <button class="btn col-5 bg-light border border-black">Approve</button>
+                        <p class="col-2"></p>
+                        <button class="btn col-5 bg-light border border-black">Decline</button>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <p>You violate the rule in Chat Room 3. Admin banned you.</p>
+                </div>
+                <div class="notification-item">
+                    <p>Chat Room 3 admin has unmuted you. You can start to chat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popover room code -->
+<!--<script>-->
+<!--    $(function () {-->
+
+
+<!--        $('#popover').popover({-->
+<!--            container: "body",-->
+<!--            html: true,-->
+<!--            content: function () {-->
+<!--                return '<div class="popover-message">' + $(this).data("message") + '</div>';-->
+<!--            }-->
+<!--        });-->
+
+
+<!--    });-->
+<!--</script>-->
+
+<!-- Modal_profile-->
+<div class="modal" id="profile-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header py-2">
+                <h5 class="modal-title" >Personal profile</h5>
+<!--                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-3" style="margin: 0">
+                    <!-- name -->
+<!--                    <div class="col-sm-5">-->
+<!--                        <label for="firstName" class="form-label pt-1 mb-0">First name</label>-->
+<!--                        <input type="text" class="form-control" id="firstName" placeholder="Tim" value="" disabled>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-sm-5">-->
+<!--                        <label for="lastName" class="form-label pt-1 mb-0">Last name</label>-->
+<!--                        <input type="text" class="form-control" id="lastName" placeholder="Jordan" value="" disabled>-->
+<!--                    </div>-->
+
+                    <!-- gender -->
+<!--                    <div class="col-sm-2">-->
+<!--                        <label for="gender" class="form-label pt-1 mb-0">Gender</label>-->
+<!--                        <input type="text" class="form-control" id="gender"  placeholder="M" value="" disabled>-->
+<!--                    </div>-->
+
+                    <!-- username -->
+                    <div class="col-12">
+                        <label for="username" class="form-label pt-1 mb-0">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="TimJordan1" disabled>
+                    </div>
+
+<!--                    &lt;!&ndash; email &ndash;&gt;-->
+<!--                    <div class="col-12">-->
+<!--                        <label for="email" class="form-label pt-1 mb-0">Email <span class="text-muted">(Optional)</span></label>-->
+<!--                        <input type="email" class="form-control" id="email" placeholder="TimJD@gmial.com" disabled>-->
+<!--                    </div>-->
+
+                    <!-- school -->
+                    <div class="col-12">
+                        <label for="school" class="form-label pt-1 mb-0">School</label>
+                        <input type="text" class="form-control" id="school" placeholder="Rice University" disabled>
+                    </div>
+
+                    <!-- interest -->
+                    <div class="col-12">
+                        <label for="interest" class="form-label pt-1 mb-0">Interest</label>
+                        <input type="text" class="form-control" id="interest" placeholder="Rice University" disabled>
+                    </div>
+
+                    <!-- date -->
+                    <div class="col-12">
+                        <label for="DOB" class="form-label pt-1 mb-0">Date of Birth</label>
+                        <input type="text" class="form-control" id="DOB" placeholder="12/06/2000" disabled>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="./js/formValidation.js"></script>
+<script src="./js/chatroom.js"></script>
+</body>
+</html>
