@@ -498,7 +498,7 @@ function displayChannelUserList(data, alldata) {
                     `<div class="name">${d.name}</div>` +
                     `<div style="display: flex">` +
                     '<img id="mute-${d.id}" src="../images/mute.jpg" width="25px" height="25px" style="visibility: hidden" alt="mute" />' +
-                    `<button onclick="blockUser(${d.id},window.localStorage.getItem('channelId'))">block</button>` +
+                    `<button id="block-btn-${d.id}" onclick="blockUser(${d.id},window.localStorage.getItem('channelId'))">block</button>` +
                     `</div>` +
                     '</div>'
                 )
@@ -542,6 +542,10 @@ function displayChannelUserList(data, alldata) {
 function blockUser(userId, channelId) {
     $.get(`/block/${channelId}/${userId}`, function (data) {
         console.log(data)
+        //block-btn
+        var btn = document.getElementById(`block-btn-${userId}`);
+        btn.innerHTML = 'BLOCKED';
+        document.getElementById(`block-btn-${userId}`).disabled = 'disabled';
     });
 }
 
