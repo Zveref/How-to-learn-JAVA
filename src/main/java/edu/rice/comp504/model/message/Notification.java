@@ -61,7 +61,7 @@ public class Notification extends AMessage {
             case "leave":
                 return subjectName + " left the room";
             case "block":
-                return subjectName + " has been blocked by channelAdmin";
+                return subjectName + " has been blocked by channel Admin. " + subjectName + "'s " + "message would not be displayed in the channel."  ;
             case "mute":
                 return subjectName + " is muted in all channels due to hate speeches";
             case "warn":

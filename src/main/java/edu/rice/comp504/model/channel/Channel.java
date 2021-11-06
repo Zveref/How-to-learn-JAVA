@@ -33,7 +33,7 @@ public class Channel {
     private int capacity;
     private String channelName;
     //private String password;
-    private HashMap<Integer, AMessage> history;
+    private HashMap<Integer, Message> history;
 
     private Channel(AUser admin, HashSet<AUser> roommates, int channelId, boolean ifLocked, int capacity, String channelName) {
         this.admin = admin;
@@ -42,7 +42,7 @@ public class Channel {
         this.ifLocked = ifLocked;
         this.capacity = capacity;
         blockList = new ArrayList<>();
-        this.history = new HashMap<Integer, AMessage>();
+        this.history = new HashMap<>();
         this.channelName = channelName;
     }
 
@@ -194,12 +194,46 @@ public class Channel {
      * edit/recall or delete the history message
      */
     public void editMessage(EditMessage Emsg) {
+        System.out.println(history);
         int editId = Emsg.getTrackId();
-        history.keySet().forEach(MsgId -> {
-            if (MsgId == editId) {
-                history.replace(MsgId, Emsg);
+        System.out.println(editId);
+
+
+        Integer messageRecallId = null;
+        Integer messageEditId = null;
+
+
+
+        for (int id : history.keySet() ) {
+            if (id == editId) {
+                if (Emsg.getEditContent().isEmpty()) {
+                    messageRecallId = id;
+                } else {
+                    messageEditId = id;
+                }
+
             }
-        });
+        }
+        if (messageRecallId != null) {
+            history.remove(messageRecallId);
+        } else if (
+                messageEditId != null) {
+            history.get(messageEditId).setMessageContent(Emsg.getEditContent());
+
+        }
+
+
+//        history.keySet().forEach(MsgId -> {
+//            System.out.println(MsgId);
+//            if (MsgId == editId) {
+//                if (Emsg.getEditContent().isEmpty()) {
+//                    history.remove(MsgId);
+//                    System.out.println(history);
+//                }
+//                System.out.println("MESSAGE ID EQUALS TO EDIT ID");
+////                history.replace(MsgId, Emsg);
+//            }
+//        });
         roommates.forEach(roommate -> {
             Session userSession = ChatAppWorld.getSession(roommate);
             if (userSession.isOpen()) {
@@ -222,7 +256,7 @@ public class Channel {
         this.channelName = channelName;
     }
 
-    public HashMap<Integer, AMessage> getHistory() {
+    public HashMap<Integer, Message> getHistory() {
         return history;
     }
 
@@ -230,7 +264,7 @@ public class Channel {
         return ifLocked;
     }
 
-    public boolean addHistory(Integer amsId, AMessage ams) {
+    public boolean addHistory(Integer amsId, Message ams) {
         if (history.keySet().contains(amsId)) {
             return false;
         }
