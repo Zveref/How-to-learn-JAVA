@@ -888,7 +888,12 @@ function updateChatRoom(message) {
                 }
 
 
-            } else {displayChatMessage(data)}
+            } else {
+                if (data.receivable) {
+                    displayChatMessage(data)
+                }
+
+            }
 
 
         }
