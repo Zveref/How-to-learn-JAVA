@@ -1,6 +1,27 @@
 'use strict';
 
-const webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/chatapp?userId=" + window.localStorage.getItem('userId'))
+const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp?userId=" + window.localStorage.getItem('userId'));
+
+
+var timerID = 0;
+
+function keepAlive() {
+    var timeout = 15000;
+    if (webSocket.readyState == webSocket.OPEN) {
+        console.log("webscocket send")
+        webSocket.send("Keep alive");
+    }
+    timerID = setTimeout(keepAlive, timeout);
+}
+
+function cancelKeepAlive() {
+    if (timerID) {
+        clearTimeout(timerID);
+    }
+}
+
+keepAlive();
+
 
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -60,15 +81,17 @@ $("#logout-btn").click(() => {
     window.localStorage.removeItem('birthDate');
     window.localStorage.setItem('isLogin', 'false');
 
-    window.location.href = './index.html'
+    window.location.href = './index.html';
+    cancelKeepAlive();
 })
 
 window.onload = function() {
-    let userId = window.localStorage.getItem("userId");
-    // let channel = getJoinedChannels(userId);
-    // loadJoinedChannels();
 
-}
+    keepAlive();
+    let userId = window.localStorage.getItem("userId");
+
+
+};
 
 
 function searchChannel() {

@@ -72,6 +72,10 @@ public class WebSocketAdapter {
      */
     @OnWebSocketMessage
     public void onMessage(Session session, String info) throws Exception {
+        if ( info.equals("Keep alive")) {
+            System.out.println("keep alive message");
+            return;
+        }
         System.out.print("FROM FRONTEND: ");
         System.out.println(info);
         InfoToAMsg helper = new InfoToAMsg(info);
