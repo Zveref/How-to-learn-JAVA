@@ -1,6 +1,6 @@
 'use strict';
 
-const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp?userId=" + window.localStorage.getItem('userId'))
+const webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/chatapp?userId=" + window.localStorage.getItem('userId'))
 
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
