@@ -1,0 +1,415 @@
+body {
+    background: #e3ecff;
+}
+.row.row-broken {
+    padding-bottom: 0;
+}
+.col-inside-lg {
+    padding: 20px;
+}
+.chat {
+    height: 90vh;
+}
+.decor-default {
+    background-color: #ffffff;
+}
+
+.chat-room-list {
+    display: flex;
+    height: 20px;
+    margin-left: -20px;
+    z-index: 999;
+    border: solid 0px;
+    background: white;
+    border-radius: 100% 100%;
+}
+
+.chat-users .user {
+    position: relative;
+    padding: 10px 20px 10px 60px;
+    display: block;
+    cursor: pointer;
+    margin: 0 0 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+.chat-users .user .avatar {
+    top: 10px;
+    left: 10px;
+}
+.chat .avatar {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}
+.chat .avatar img {
+    display: block;
+    border-radius: 20px;
+    height: 100%;
+}
+.chat .avatar .status.off {
+    border: 1px solid #5a5a5a;
+    background: #ffffff;
+}
+.chat .avatar .status.online {
+    background: #4caf50;
+}
+.chat .avatar .status.busy {
+    background: #ffc107;
+}
+.chat .avatar .status.offline {
+    background: #ed4e6e;
+}
+.chat-users .user .status {
+    bottom: 0;
+    left: 28px;
+}
+
+.chat-users .user .admin-symbol {
+    width: 30px;
+    position: absolute;
+    top: 0;
+    left: 30px;
+}
+.chat .avatar .status {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: absolute;
+}
+.chat-users .user .room-name {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chat-users .user .name {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-users .user .room-description {
+    font: 200 14px/20px "Raleway", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-users .user .mood {
+    font: 200 14px/20px "Raleway", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.room-col .leave-btn {
+    background-color: #7266ba;
+    color:white;
+    margin-bottom: 15px;
+}
+
+/*****************CHAT BODY *******************/
+.chat-body h6 {
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+.chat-body .answer.left {
+    padding: 0 0 0 58px;
+    text-align: left;
+    float: left;
+}
+.chat-body .answer {
+    position: relative;
+    max-width: 600px;
+    overflow: hidden;
+    clear: both;
+}
+.chat-body .history-message {
+    margin-top: 20px;
+    text-align: center;
+    color: grey;
+}
+.chat-body .answer.left .avatar {
+    left: 0;
+}
+.chat-body .answer .avatar {
+    bottom: 36px;
+}
+.chat-body .chat-header {
+    border-bottom: 1px solid #dee0e1;
+}
+.chat-body .chat-header h6 {
+    margin-bottom: 10px;
+}
+.chat-body .chat-header p {
+    color: grey;
+}
+.chat .avatar {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}
+.chat .avatar img {
+    display: block;
+    border-radius: 20px;
+    height: 100%;
+}
+.chat-body .answer .name {
+    font-size: 14px;
+    line-height: 36px;
+}
+.chat-body .answer.left .avatar .status {
+    right: 4px;
+}
+.chat-body .answer .avatar .status {
+    bottom: 0;
+}
+.chat-body .answer.left .text {
+    background: white;
+    color: #333333;
+    border-radius: 8px 8px 8px 0;
+}
+.chat-body .answer .text {
+    padding: 12px;
+    font-size: 16px;
+    line-height: 26px;
+    position: relative;
+}
+.chat-body .answer.left .text:before {
+    left: -30px;
+    border-right-color: #ebebeb;
+    border-right-width: 12px;
+}
+.chat-body .answer .text:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    border: 18px solid transparent;
+    border-bottom-width: 0;
+}
+.chat-body .answer.left .time {
+    padding-left: 12px;
+    color: #333333;
+}
+.chat-body .answer .time {
+    font-size: 16px;
+    line-height: 36px;
+    position: relative;
+    padding-bottom: 1px;
+}
+/*RIGHT*/
+.chat-body .answer.right {
+    padding: 0 58px 0 0;
+    text-align: right;
+    float: right;
+}
+
+.chat-body .answer.right .avatar {
+    right: 0;
+}
+.chat-body .answer.right .avatar .status {
+    left: 4px;
+}
+.chat-body .answer.right .text {
+    background: #7266ba;
+    color: #ffffff;
+    border-radius: 8px 8px 0 8px;
+}
+.chat-body .answer.right .text:before {
+    right: -30px;
+    border-left-color: #7266ba;
+    border-left-width: 12px;
+}
+.chat-body .answer.right .time {
+    padding-right: 12px;
+    color: #333333;
+}
+
+/**************ADD FORM ***************/
+.chat-body .answer-add {
+    clear: both;
+    position: relative;
+    margin: 20px -20px -20px;
+    padding: 20px;
+    background: #46be8a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-body .answer-add input {
+    border: none;
+    background: none;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0;
+    color: #ffffff;
+}
+.chat input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+.chat-body .answer-add .answer-btn-1 {
+    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-40.png")
+    50% 50% no-repeat;
+    right: 56px;
+}
+.chat-body .answer-add .answer-btn {
+    /*display: block;*/
+    /*cursor: pointer;*/
+    /*width: 36px;*/
+    /*height: 36px;*/
+    /*position: absolute;*/
+    /*margin-top: -18px;*/
+}
+.chat-body .answer-add .answer-btn:hover{
+    color: white;
+}
+.chat-body .answer-add .answer-btn-2 {
+    background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-41.png")
+    50% 50% no-repeat;
+    right: 20px;
+}
+.chat input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.chat input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff;
+}
+
+.chat input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff;
+}
+
+.chat input:-ms-input-placeholder {
+    color: #fff;
+}
+.chat input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+.modal .close-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.header {
+    overflow: hidden;
+    background-color: #7266ba;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+}
+
+.header a {
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 80px;
+}
+
+.header a img {
+    width: 30px;
+    opacity: 50%;
+}
+
+.header a:hover {
+    color: white;
+}
+
+.header a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.header-right {
+    float: right;
+}
+
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+.search-box {
+    border: solid 3px rgb(85, 74, 87);
+    display: inline-block;
+    position: relative;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+.search-box input[type="text"] {
+    font-family: Raleway, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 80%;
+    height: 20px;
+    padding: 5px 40px 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: #e3ecff;
+}
+
+.row .room-col {
+    text-align: center;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #778899;
+    text-align: center;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid #dee0e1;
+    padding: 20px 40px;
+    justify-content: center;
+}
+/* Full-width input fields */
+.modal-container input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.message-type {
+    color: #7266ba;
+}
+
+.message-btn {
+    border-radius: 6px;
+    border: solid 1px;
+}
